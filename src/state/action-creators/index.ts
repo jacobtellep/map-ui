@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 import axios from 'axios';
+import { resourceLimits } from 'worker_threads';
 
 export const searchMapData = (term: string) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -14,8 +15,9 @@ export const searchMapData = (term: string) => {
         'https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/NOAA_Storm_Events_Database_view/FeatureServer/0/query',
         {
           params: {
-            where: "STATE='Ohio' AND YEAR=1950",
+            where: term,
             f: 'geojson',
+            outFields: 'EVENT_TYPE',
           },
         }
       );
@@ -29,7 +31,9 @@ export const searchMapData = (term: string) => {
       console.log(data);
 
       const coordinates = data.features.map((result: any) => {
-        return result.geometry.coordinates;
+        if (result.geometry !== null) {
+          return result.geometry.coordinates;
+        }
       });
 
       dispatch({
