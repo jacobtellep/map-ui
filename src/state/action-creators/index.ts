@@ -14,7 +14,7 @@ export const searchMapData = (term: string) => {
         'https://services.arcgis.com/jIL9msH9OI208GCb/arcgis/rest/services/NOAA_Storm_Events_Database_view/FeatureServer/0/query',
         {
           params: {
-            where: "STATE='Ohio' AND YEAR=2021",
+            where: "STATE='Ohio' AND YEAR=1950",
             f: 'geojson',
           },
         }

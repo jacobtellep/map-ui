@@ -1,13 +1,18 @@
 import { Provider } from 'react-redux';
 import { store } from '../state';
-import RepositoriesList from './MapRenderer';
+import MapRenderer from './MapRenderer';
+import { State } from '../QueryOptions/StateOptions';
 
 const App = () => {
+  
   return (
     <Provider store={store}>
       <div>
         <h1>Search Map Data</h1>
-        <RepositoriesList />
+        <MapRenderer />
+        <select>
+          
+        </select>
       </div>
     </Provider>
   );

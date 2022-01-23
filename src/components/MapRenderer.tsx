@@ -3,7 +3,7 @@ import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedSelector';
 import { useRef } from 'react';
 
-const RepositoriesList: React.FC = () => {
+const MapRenderer: React.FC = () => {
   const [term, setTerm] = useState('');
   const [err, setErr] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -45,10 +45,10 @@ const RepositoriesList: React.FC = () => {
       {<span style={{ color: 'red', fontWeight: 'bold' }}>{err}</span>}
       {error && <h3>{error}</h3>}
       {loading && <h3>loading...</h3>}
-      {!error && !loading && data.map((name) => <div key={name}>{name}</div>)}
+      {!error && !loading && data.map((coordinate, index) => <div key={index}>{coordinate}</div>)}
       {/* {data} */}
     </div>
   );
 };
 
-export default RepositoriesList;
+export default MapRenderer;
